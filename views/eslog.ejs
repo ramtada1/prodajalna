@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <% if (vizualiziraj) { %>
 <?xml-stylesheet type="text/xsl" href="../eSLOG/vizualizacija.xslt"?>
 <% } %>
@@ -173,20 +173,20 @@
 			<NazivNaslovPodjetja>
 				<VrstaPartnerja>BY</VrstaPartnerja>
 				<NazivPartnerja>
-					<NazivPartnerja1>Univerza v Ljubljani, </NazivPartnerja1>
-					<NazivPartnerja2>Fakulteta za računalništvo in informatiko</NazivPartnerja2>
-					<NazivPartnerja3>Laboratorij za </NazivPartnerja3>
-					<NazivPartnerja4>podatkovne tehnologije</NazivPartnerja4>
+					<NazivPartnerja1><%= stranka[0].FirstName + " "+ stranka[0].LastName %></NazivPartnerja1>
+					<NazivPartnerja2><%= stranka.Company %></NazivPartnerja2>
+					<NazivPartnerja3></NazivPartnerja3>
+					<NazivPartnerja4></NazivPartnerja4>
 				</NazivPartnerja>
 				<Ulica>
-					<Ulica1>Večna pot </Ulica1>
-					<Ulica2>113</Ulica2>
-					<Ulica3>nadstropje 2, kabinet R2.49</Ulica3>
+				<Ulica1><%= stranka.Address %></Ulica1>
+				<Ulica2></Ulica2>
+				<Ulica3></Ulica3>
 				</Ulica>
-				<Kraj>Ljubljana</Kraj>
-				<NazivDrzave>Slovenija</NazivDrzave>
-				<PostnaStevilka>1000</PostnaStevilka>
-				<KodaDrzave>SI</KodaDrzave>
+				<Kraj><%= stranka.City %></Kraj>
+				<NazivDrzave><%= stranka.Country %></NazivDrzave>
+				<PostnaStevilka><%= stranka.PostalCode %></PostnaStevilka>
+				<KodaDrzave></KodaDrzave>
 			</NazivNaslovPodjetja>
 			<FinancniPodatkiPodjetja>
 				<BancniRacun>
@@ -210,14 +210,14 @@
 			</ReferencniPodatkiPodjetja>
 			<KontaktiPodjetja>
 				<KontaktnaOseba>
-					<ImeOsebe>Dejan Lavbič</ImeOsebe>
+					<ImeOsebe><%= stranka.FirstName+" "+stranka.LastName+" ("+stranka.Email+")" %></ImeOsebe>
 				</KontaktnaOseba>
 				<Komunikacije>
-					<StevilkaKomunikacije>38614798000</StevilkaKomunikacije>
+				<StevilkaKomunikacije><%= stranka.Telefon %></StevilkaKomunikacije>
 					<VrstaKomunikacije>TE</VrstaKomunikacije>
 				</Komunikacije>
 				<Komunikacije>
-					<StevilkaKomunikacije>38612419350</StevilkaKomunikacije>
+					<StevilkaKomunikacije><%= stranka.Faks %></StevilkaKomunikacije>
 					<VrstaKomunikacije>FX</VrstaKomunikacije>
 				</Komunikacije>
 			</KontaktiPodjetja>

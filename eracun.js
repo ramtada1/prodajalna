@@ -148,6 +148,13 @@ var strankaIzRacuna = function(racunId, callback) {
     })
 }
 
+var strankaTrenutna = function(zahteva, callback) {
+    pb.all("SELECT * FROM Customer WHERE Customer.CustomerId = " + zahteva.session.idStranke,
+      function(napaka, vrstice) {
+         callback(napaka, vrstice);
+     }
+     );
+   }
 // Izpis računa v HTML predstavitvi na podlagi podatkov iz baze
 streznik.post('/izpisiRacunBaza', function(zahteva, odgovor) {
   odgovor.end();

@@ -46,7 +46,6 @@ function davcnaStopnja(izvajalec, zanr) {
 }
  
      
-     
    
    
 streznik.get('/', function(zahteva, odgovor) {
@@ -168,6 +167,13 @@ var strankaIzRacuna = function(racunId, callback) {
     })
 }
 
+var strankaTrenutna = function(zahteva, callback) {
+    pb.all("SELECT * FROM Customer WHERE Customer.CustomerId = " + zahteva.session.idStranke,
+      function(napaka, vrstice) {
+         callback(napaka, vrstice);
+     }
+     );
+   }
 // Izpis računa v HTML predstavitvi na podlagi podatkov iz baze
 streznik.post('/izpisiRacunBaza', function(zahteva, odgovor) {
    var form =new formidable.IncomingForm();
@@ -242,6 +248,7 @@ streznik.post('/prijava', function(zahteva, odgovor) {
     	  Address, City, State, Country, PostalCode, \
     	  Phone, Fax, Email, SupportRepId) \
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+<<<<<<< HEAD
      stmt.run(polja.FirstName, polja.LastName, polja.Company, polja.Address, polja.City, polja.State, 
       polja.Country, polja.PostalCode, polja.Phone, polja.Fax, polja.Email , 3); 
        
@@ -264,6 +271,30 @@ streznik.post('/prijava', function(zahteva, odgovor) {
    
   });
 });
+=======
+    stmt.run(polja.FirstName, polja.LastName, polja.Company, polja.Address, polja.City, polja.State, 
+     polja.Country, polja.PostalCode, polja.Phone, polja.Fax, polja.Email , 3); 
+       
+       stmt.finalize();
+    } catch (err) {
+      napaka2 = true;
+    vrniStranke(function(napaka1, stranke){
+        vrniRacune(function(napaka2, racuni){
+          odgovor.render('prijava', {sporocilo:"Prišlo je do napake pri registraciji nove stranke. Prosim preverite vnešene podatke in poskusite znova.",seznamStrank: stranke, seznamRacunov: racuni});
+         });
+       });
+    }
+    if(napaka2==false){
+      vrniStranke(function(napaka1, stranke){
+         vrniRacune(function(napaka2, racuni){
+          odgovor.render('prijava', {sporocilo:"Stranka je bila uspešno registrirana.",seznamStrank: stranke, seznamRacunov: racuni});
+         });
+       });  
+    }
+  });
+   
+
+>>>>>>> prikaz-racuna-trenutni
 
 // Prikaz strani za prijavo
 streznik.get('/prijava', function(zahteva, odgovor) {

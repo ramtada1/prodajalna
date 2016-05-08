@@ -44,7 +44,9 @@ function davcnaStopnja(izvajalec, zanr) {
       return 9.5;
   }
 }
-
+     
+     
+     
    
    
 streznik.get('/', function(zahteva, odgovor) {
